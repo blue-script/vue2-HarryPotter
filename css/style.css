@@ -1,0 +1,85 @@
+@font-face {
+    font-family: "HPStyle";
+    src: url(../fonts/harry-potter-2.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body button {
+    font-family: "HPStyle", sans-serif;
+}
+i.fa {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+@keyframes slide {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.main {
+    background-image: url(../img/bgmain.jpg);
+    background-repeat: repeat-x;
+    background-size: cover;
+    animation: slide 90s linear infinite;
+}
+
+.app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.app__header {
+    background-color: rgba(0,0,0,0.5);
+    border-bottom: 7px solid #f0dc0571;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.app__logo {
+    display: block;
+    padding: 0 20px;   
+    width: 200px;
+    margin: 0 auto;
+}
+
+.app__body {
+    display: flex;
+    flex-direction: column;
+}
+
+.app__btn {
+    display: flex;
+}
+
+.fa-solid {}
+
+.fa-bolt {}
+
+.fa-fade {}
+
+.app__btn-text {}
+
+.fa-star {}
+
+.fa-user {}
+
+.fa-volume-high {}
