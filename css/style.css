@@ -184,3 +184,24 @@ i.fa-award {
     background-color: rgba(0, 0, 0, 0.5);
     border: 5px solid rgba(163, 147, 3,0.5);
 }
+
+.app__header-inner {
+    color: #d0bf04;
+    text-align: center;
+}
+.app__count {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.app__text {
+    font-size: 20px;
+}
+
+
+
+
+
+.results .app__body {
+    justify-content: space-between;
+}
+
