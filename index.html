@@ -16,31 +16,27 @@
 
 <body>
     <div class="main">
-        <!-- <div class="app">
+        <div class="app" v-show="showMain">
             <div class="app__header">
                 <img src="img/main_logo.png" class="app__logo">
-            </div> 
+            </div>
             <div class="app__body">
-                <button class="app__btn">
+                <button class="app__btn" @click="goToQuestions">
                     <i class="fa-solid fa-bolt fa-fade" style="color: #f0dc05;"></i>
                     <div class="app__btn-text">Начать</div>
                 </button>
-                <button class="app__btn">
+                <button class="app__btn" v-on:click="goToAchivments">
                     <i class="fa-solid fa-star" style="color: #f0dc05;"></i>
                     <div class="app__btn-text">Достижения</div>
                 </button>
-                <button class="app__btn">
+                <button class="app__btn" @click="goToSocial">
                     <i class="fa-solid fa-user" style="color: #f0dc05;"></i>
                     <div class="app__btn-text">Автор</div>
                 </button>
-                <button class="app__btn">
-                    <i class="fa-solid fa-volume-high" style="color: #f0dc05;"></i>
-                    <div class="app__btn-text">Звук</div>
-                </button>
             </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="app achivments">
+        <div class="app achivments" v-show="showAchivments">
             <div class="app__body">
                 <div class="app__body-inner">
                     <h2 class="app__body-title">
@@ -50,68 +46,104 @@
                     <div class="app__body-top">
                         <div class="app__card">
                             <div class="app__card-text">Счет</div>
-                            <div class="app__card-count">1</div>
+                            <div class="app__card-count">{{ totalScore }}</div>
                         </div>
                         <div class="app__card">
                             <div class="app__card-text">Открыто фракций</div>
-                            <div class="app__card-count">2</div>
+                            <div class="app__card-count">{{ openRaces }}</div>
                         </div>
                         <div class="app__card">
                             <div class="app__card-text">Всего игр</div>
-                            <div class="app__card-count">3</div>
+                            <div class="app__card-count">{{ totalGames }}</div>
                         </div>
                         <div class="app__card">
                             <div class="app__card-text">Любимая фракция</div>
-                            <div class="app__card-count">"Магл"</div>
+                            <div class="app__card-count">{{ favoriteRace }}</div>
                         </div>
                     </div>
                     <div class="app__body-middle">
-                        <div class="app__result">
+                        <div class="app__result" v-for="(race, k) in results" v-show="showResultRace[k]"
+                            @click="goToResult(k)">>
                             <div class="app__result-score">
                                 <i class="fa-solid fa-award" style="color: #f0dc05;"></i>
-                                <div class="app__result-count">60</div>
+                                <div class="app__result-count">{{ race.points }}</div>
                             </div>
-                            <div class="app__result-name">Магл</div>
-                            <div class="app_result-amount">2</div>
+                            <div class="app__result-name">{{ race.name }}</div>
+                            <div class="app_result-amount">{{ totalGame[k] }}</div>
                         </div>
                     </div>
                     <div class="app__body bottom">
-                        <button class="app__btn btn_back btn_achivment">
+                        <button class="app__btn btn_back btn_achivment" @click="goToMain">
                             <i class="fa-solid fa-reply" style="color: #f0dc05;"></i>
                         </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
-        <div class="app">
+        <div class="app" v-show="showQuestion">
             <div class="app__header">
                 <div class="app__header-inner">
-                    <div class="app__count"># 1</div>
-                    <div class="app__text">"Твое главное качество?"</div>
+                    <div class="app__count"># {{number + 1}}</div>
+                    <div class="app__text">{{questions[number][0]}}</div>
                 </div>
             </div>
             <div class="app__body">
-                <button class="app__btn">
-                    <div class="app__btn-text">"Чувство юмора"</div>
-                </button>
-                <button class="app__btn">
-                    <div class="app__btn-text">"Чувство юмора"</div>
-                </button>
-                <button class="app__btn">
-                    <div class="app__btn-text">"Чувство юмора"</div>
+                <button class="app__btn" v-for="(answer, i) in questions[number][1]"
+                    v-on:click="nextQuestions(questions[number][2][i])">
+                    <div class="app__btn-text">{{answer}}</div>
                 </button>
             </div>
         </div>
 
+        <div class="app" v-show="showSocial">
+            <div class="app__body">
+                <a target="_blank" href="https://www.linkedin.com/in/alexandrdem/" class="app__btn">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <div class="app__btn-text">Linkedin</div>
+                </a>
+                <a target="_blank" href="https://vk.com/demyanov_an" class="app__btn">
+                    <i class="fa-brands fa-vk"></i>
+                    <div class="app__btn-text">Vkontakte</div>
+                </a>
+                <a target="_blank" href="https://www.instagram.com/demianov.an" class="app__btn">
+                    <i class="fa-brands fa-instagram"></i>
+                    <div class="app__btn-text">instagram</div>
+                </a>
+                <a target="_blank" href="https://github.com/blue-script" class="app__btn">
+                    <i class="fa-brands fa-github"></i>
+                    <div class="app__btn-text">GitHub</div>
+                </a>
+                <button class="app__btn btn_back" @click="goToMain">
+                    <i class="fa-solid fa-reply"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="app results" v-show="showResult"                      v-bind:data-type="resultRace">
+            <div class="app__body">
+                <div class="app__results-inner">
+                    <div class="result__title">{{ results[resultRace].name }}</div>
+                    <div class="results__img">
+                        <img :src="'img/'+resultRace+'_logo.png'">
+                    </div>
+                    <div class="results__text-box">
+                        <p class="results__text">{{ results[resultRace].description }}</p>
+                    </div>
+                    <div>
+                        <button :class="'app__btn btn_back btn_'+resultRace" @click="goToAchivments">
+                            <i class="fa-solid fa-reply"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
     <script src="js/vue.js"></script>
     <script src="js/const.js"></script>
-    <script>
-
-    </script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

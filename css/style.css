@@ -1,6 +1,6 @@
 @font-face {
     font-family: "HPStyle";
-    src: url(../fonts/harry-potter-2.ttf);
+    src: url(../fonts/Harry\ Potter.ttf);
 }
 
 * {
@@ -196,12 +196,89 @@ i.fa-award {
 .app__text {
     font-size: 20px;
 }
-
-
-
-
+i.fa-brands {
+    font-size: 30px;
+    margin-right: 10px;
+}
 
 .results .app__body {
     justify-content: space-between;
 }
 
+.app__results-inner {
+    color: #fff;
+    padding: 20px;
+}
+.result__title {
+    text-transform: uppercase;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+.results__img {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.results__img img {
+    width: 250px;
+}
+.results__text-box {
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.results__text {
+    margin-bottom: 20px;
+}
+.app.results {
+    animation: none;
+    background-size: cover;
+    background-position: center center;
+}
+.app.results[data-type="slizerin"] {
+    background-image: url(../img/slizerin_bg.jpg);
+    background-size: cover;
+}
+.app.results[data-type="gryffindor"] {
+    background-image: url(../img/gryffindor_bg.jpg);
+    background-size: cover;
+}
+.app.results[data-type="hufflepuff"] {
+    background-image: url(../img/hufflepuff_bg.jpg);
+    background-size: cover;
+}
+.app.results[data-type="ravenclaw"] {
+    background-image: url(../img/ravenclaw_bg.jpg);
+    background-size: cover;
+}
+.app.results[data-type="muggle"] {
+    background-image: url(../img/muggle_bg.jpg);
+    background-size: cover;
+}
+.app.results[data-type="gobline"] {
+    background-image: url(../img/gobline_bg.jpg);
+    background-size: cover;
+}
+
+.btn_slizerin {
+    background-color: #762877;
+}
+.btn_gryffindor {
+    background-color: #56a725;
+}
+.btn_hufflepuffs {
+    background-color: #fce356;
+    color: #000;
+}
+.btn_rawenclow {
+    background-color: #9d0101;
+}
+.btn_muggle {
+    background-color: #da8618;
+}
+.btn_gobline {
+    background-color: #f5b673;
+    color: #000;
+}
